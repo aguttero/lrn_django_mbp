@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monthly Challenge</title>
+    <title>{{ month_name|title }} Challenge</title>
 </head>
 <body>
-    <h1>This Month's Challenge:</h1>
+    <h1>{{ month_name|capfirst }} Challenge:</h1>
     <h2>Need dynamic text here</h2>
+    {% if text is not None %}
+        <h2>{{ text|capfirst }}</h2>
+    {% else %}
+        <h2>If tag testing. This is the ELSE path in the template</h2>
+    {% endif %}
 </body>
 </html>

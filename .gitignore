@@ -1,0 +1,5 @@
+.DS_Store
+.vscode
+mychallenge/challenges/__pycache__
+mychallenge/mychallenge/__pycache__
+mychallenge/challenges/migrations/__pycache__

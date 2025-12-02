@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'challenges',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -55,7 +56,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / 'challenges' / 'templates'
+            # BASE_DIR / 'challenges' / 'templates' // 
+            # Best Practice -> Declare here when using a globla templates folder outside of Django apps
         ],
         'APP_DIRS': True,
         'OPTIONS': {

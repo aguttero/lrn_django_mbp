@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
-from django.template.loader import render_to_string
+# VRS 01 from django.template.loader import render_to_string
 
 # Create your views here.
 
@@ -22,7 +22,8 @@ monthly_content_dict = {
     "set": "learn django",
     "oct": "go running",
     "nov": "play paddle",
-    "dec": "go sailing",
+    #"dec": "go sailing",
+    "dec": None
 }
 
 # TEST CODE
@@ -31,16 +32,34 @@ monthly_content_dict = {
 # print ("dict_keys type", type(dict_keys))
 
 
-def index(request):
+def index_old(request):
     list_items_str = ""
     # new_list = new item for item in list
-    months = list(monthly_content_dict.keys())
+    months_list = list(monthly_content_dict.keys())
+    for month in months_list:
+        month_path = reverse("month_url", args=[month])
+        list_items_str += f'<li><a href="{month_path}">{month.capitalize()}</a></li>'
+    # print("list_items_str:", list_items_str)
+    response_data = f"<ol>{list_items_str}</ol>"
+    return HttpResponse(response_data)
+
+def index(request):
+    list_items_str = ""
+    months_list = list(monthly_content_dict.keys())
+
+
+    return render (request, "challenges/index.html", {
+        "months_list" : months_list,
+    })
     for month in months:
         month_path = reverse("month_url", args=[month])
         list_items_str += f'<li><a href="{month_path}">{month.capitalize()}</a></li>'
-    #print("list_items_str:", list_items_str)
+    # print("list_items_str:", list_items_str)
     response_data = f"<ol>{list_items_str}</ol>"
-    return HttpResponse (response_data)
+    return HttpResponse(response_data)
+
+
+
 
 
 def monthly_challenge_number(request, month):
@@ -74,9 +93,15 @@ def monthly_challenge(request, month):
     # print("month type:", type(month))
     try:
         challenge_text = monthly_content_dict[month]
-        #response_data = f"<h2>{challenge_text}</h2>"
-        response_data = render_to_string('challenges/challenge.html')
-        return HttpResponse(response_data)
+        # response_data = f"<h2>{challenge_text}</h2>"
+        # VRS 01 response_data = render_to_string('challenges/challenge.html')
+        # VRS 01 return HttpResponse(response_data)
+        return render(request, "challenges/challenge.html", {
+            "text": challenge_text,
+            # V01 "month_name": month.capitalize(),
+            "month_name": month,
+
+        })
     except:
         return HttpResponseNotFound("This is the text for the 404 -> month not supported")
 
