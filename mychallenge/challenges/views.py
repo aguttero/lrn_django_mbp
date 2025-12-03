@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
-# VRS 01 from django.template.loader import render_to_string
+#from django.template.loader import render_to_string
+from django.http import Http404 #can remove HttpResponse if not used
+
 
 # Create your views here.
 
@@ -9,6 +11,8 @@ from django.urls import reverse
 def home(request):
     return HttpResponse("fn home ok")
 
+def test():
+    return "This is the fn text output value"
 
 monthly_content_dict = {
     "jan": "Eat no meat",
@@ -103,15 +107,9 @@ def monthly_challenge(request, month):
 
         })
     except:
-        return HttpResponseNotFound("This is the text for the 404 -> month not supported")
-
-   # V01 of fn, before of the dictionary solution
-    # if month == "jan":
-    #     response_text = "fn montly_challenge -> jan response ok"
-    # elif month == "feb":
-    #     response_text = "fn montly_challenge -> feb response ok"
-    # elif month == "mar":
-    #     response_text = "fn montly_challenge -> mar response ok"
-    # else:
-    #     return HttpResponseNotFound("This is the text for the 404 -> month not supported")
-    # return HttpResponse(response_text)
+        # V01 - HARDCODED -> return HttpResponseNotFound("This is the text for the 404 -> month not supported")
+        # V02 - render to string with 404.html template -> import render_to_string
+        # V02 response_data = render_to_string("404.html")
+        # V02 return HttpResponseNotFound (response_data)
+        # V03 with django 404 handler -> import Http404
+        raise Http404() # looks for '404.html' in any templates folder - only works if Debuf = False in settings.py

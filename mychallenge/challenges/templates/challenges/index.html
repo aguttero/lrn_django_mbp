@@ -3,6 +3,7 @@
   {% block page_title %}All Challenges{% endblock page_title  %}  
   
   {% block body_content %}
+  {% include "challenges/includes/header.html" with active_page="index" %}
     <ul>
         {% for month in months_list %}
         {% comment %} V01 <li><a href="/challenges/{{ month }}"> {{ month|capfirst }} </li> {% endcomment %}

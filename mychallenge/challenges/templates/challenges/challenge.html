@@ -5,12 +5,11 @@
 {% endblock page_title %}    
 
 {% block body_content %}
-{% include "challenges/includes/header.html" %}
+{% include "challenges/includes/header.html" with active_page="challenge" %}
 <h1>{{ month_name|capfirst }} Challenge:</h1>
-    <h2>Need dynamic text here</h2>
     {% if text is not None %}
         <h2>{{ text|capfirst }}</h2>
     {% else %}
-        <h2>If tag testing. This is the ELSE path in the template</h2>
+        <h2>If tag testing. This is the ELSE path in the template because this month text value is 'NONE'</h2>
     {% endif %}
 {% endblock body_content %}
