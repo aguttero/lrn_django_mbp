@@ -38,7 +38,6 @@ monthly_content_dict = {
 
 def index_old(request):
     list_items_str = ""
-    # new_list = new item for item in list
     months_list = list(monthly_content_dict.keys())
     for month in months_list:
         month_path = reverse("month_url", args=[month])
@@ -48,22 +47,10 @@ def index_old(request):
     return HttpResponse(response_data)
 
 def index(request):
-    list_items_str = ""
     months_list = list(monthly_content_dict.keys())
-
-
     return render (request, "challenges/index.html", {
         "months_list" : months_list,
-    })
-    for month in months:
-        month_path = reverse("month_url", args=[month])
-        list_items_str += f'<li><a href="{month_path}">{month.capitalize()}</a></li>'
-    # print("list_items_str:", list_items_str)
-    response_data = f"<ol>{list_items_str}</ol>"
-    return HttpResponse(response_data)
-
-
-
+    }) # pasa la variable month_list al template
 
 
 def monthly_challenge_number(request, month):
