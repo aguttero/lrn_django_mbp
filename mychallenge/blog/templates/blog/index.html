@@ -4,22 +4,17 @@
 {% block page_title %}
     My Blog
 {% endblock page_title %}
-
 {% block css_files %}
+<link rel="stylesheet" href="{% static "blog/post.css" %}">
+    <link rel="stylesheet" href="{% static "blog/index.css" %}">
 {% endblock css_files %}
 
-
 {% block body_content %}
-<header id="main-navigation">
-    <h1> <a href="">Gutter Test Blog</a></h1>
-    <nav>
-        <a href="">All Posts</a>
-    </nav>
-</header>
+
 
 <section id="welcome">
     <header>
-        <img src="" alt="Gutter: The Blog Builder" />
+        <img src="{% static "blog/images/max.png" %}" alt="Gutter: The Blog Builder" >
         <h2>Gutter's Blog </h2>
     </header>
     <p>I am Gutter and I love cycling and solving problems thru code</p>
@@ -29,17 +24,7 @@
     <h2>My Latest experiences</h2>
 
     <ul>
-        <li>
-            <article class="post">
-                <a href="">
-                    <img src="" alt="Mountain Cycling">
-                    <div class="post__content">
-                        <h3>Mountain Hiking</h3>
-                        <p>There is nothing like the views you enjoy while road cycling between the mountains</p>
-                    </div>
-                </a>
-            </article>
-        </li>
+       {% include "blog/includes/post.html" %} 
     </ul>
 </section>
 
