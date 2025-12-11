@@ -1,0 +1,35 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+{% block page_title %}
+This Post Title
+{% endblock page_title %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static "blog/post-detail.css" %}">
+{% endblock css_files %}
+
+{% block body_content %}
+<section id="summary">
+    <h2>Post Title</h2>
+    <article>
+        <img src="{% static "blog/images/mountains.jpg" %}" alt="Post Title">
+        <address>By Gutter</address>
+        <div>
+            Last updated on <time>July 10th</time>
+        </div>
+    </article>
+</section>
+<main>
+    <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur commodi harum distinctio! Sit asperiores sint voluptatibus provident iste corporis ea natus pariatur unde. Commodi error sed totam, quibusdam dolorem molestias?
+    </p>
+    <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur commodi harum distinctio! Sit asperiores sint voluptatibus provident iste corporis ea natus pariatur unde. Commodi error sed totam, quibusdam dolorem molestias?
+    </p>
+    <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur commodi harum distinctio! Sit asperiores sint voluptatibus provident iste corporis ea natus pariatur unde. Commodi error sed totam, quibusdam dolorem molestias?
+    </p>
+</main>
+
+{% endblock body_content %}

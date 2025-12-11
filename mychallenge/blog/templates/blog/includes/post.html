@@ -1,13 +1,13 @@
 {% load static %}
 
 <li>
-      <article class="post">
-                <a href="">
-                    <img src="{% static "blog/images/mountains.jpg" %}" alt="Mountain Cycling"/>
-                    <div class="post__content">
-                        <h3>Mountain Hiking</h3>
-                        <p>There is nothing like the views you enjoy while road cycling between the mountains</p>
-                    </div>
-                </a>
-            </article>
-        </li>
+    <article class="post">
+        <a href="{% url "post_detail_url" "the-mountains" %}">
+            <img src="{% static "blog/images/mountains.jpg" %}" alt="Mountain Cycling"/>
+            <div class="post__content">
+                <h3>Mountain Hiking</h3>
+                <p>There is nothing like the views you enjoy while road cycling between the mountains</p>
+            </div>
+        </a>
+    </article>
+</li>
