@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block page_title %}
-This Post Title
+{{ clicked_post.title }}
 {% endblock page_title %}
 
 {% block css_files %}
@@ -11,24 +11,18 @@ This Post Title
 
 {% block body_content %}
 <section id="summary">
-    <h2>Post Title</h2>
+    <h2> {{ clicked_post.title }} </h2>
     <article>
-        <img src="{% static "blog/images/mountains.jpg" %}" alt="Post Title">
-        <address>By Gutter</address>
+        <img src="{% static "blog/images/"|add:clicked_post.image %}" alt="Post Title">
+        <address> {{ clicked_post.author|title }} </address>
         <div>
-            Last updated on <time>July 10th</time>
+            Last updated on <time> {{ clicked_post.date|date:"d M Y" }} </time>
         </div>
     </article>
 </section>
 <main>
     <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur commodi harum distinctio! Sit asperiores sint voluptatibus provident iste corporis ea natus pariatur unde. Commodi error sed totam, quibusdam dolorem molestias?
-    </p>
-    <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur commodi harum distinctio! Sit asperiores sint voluptatibus provident iste corporis ea natus pariatur unde. Commodi error sed totam, quibusdam dolorem molestias?
-    </p>
-    <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur commodi harum distinctio! Sit asperiores sint voluptatibus provident iste corporis ea natus pariatur unde. Commodi error sed totam, quibusdam dolorem molestias?
+        {{ clicked_post.content|linebreaks }}
     </p>
 </main>
 
