@@ -12,9 +12,15 @@
 {% block body_content %}
 <section id="summary">
     <h2> {{ clicked_post.title }} </h2>
+    <div>
+        <h3>TAGS</h3>
+        {% for tag in post_tags  %}
+        <span class="tag"> {{ tag.caption }}</span>
+        {% endfor %}
+    </div>
     <article>
-        <img src="{% static "blog/images/"|add:clicked_post.image %}" alt="Post Title">
-        <address> {{ clicked_post.author|title }} </address>
+        <img src="{% static "blog/images/"|add:clicked_post.image_name %}" alt="Post Title">
+        <address>By <a href="mailto:{{clicked_post.author.email_address}}">{{ clicked_post.author|title }}</a></address>
         <div>
             Last updated on <time> {{ clicked_post.date|date:"d M Y" }} </time>
         </div>

@@ -1,8 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from datetime import date
 #import datetime as dt
 
-all_posts = [
+from .models import Post
+
+
+all_posts_old = [
     {
         "slug": "hike-in-the-mountains",
         "image": "mountains.jpg",
@@ -94,21 +97,40 @@ def get_date(post):
 
 # Create your views here.
 
+# V01 - from all_post variable
+# def starting_page(request):
+#     sorted_posts = sorted(all_posts, key=get_date)
+#     latest_posts =sorted_posts[-3:]
+#     return render (request, "blog/index.html" , {
+#         "recent_posts": latest_posts
+#     })
+
+# V02 with Database
 def starting_page(request):
-    sorted_posts = sorted(all_posts, key=get_date)
-    latest_posts =sorted_posts[-3:]
+    latest_posts=  Post.objects.all().order_by("-date")[:3]
     return render (request, "blog/index.html" , {
         "recent_posts": latest_posts
     })
 
 def posts(request):
+    all_posts = Post.objects.all()
     return render(request, "blog/all-posts.html", {
         "all_posts" : all_posts
     })
 
+# V01
+# def post_detail(request, slug):
+#     print ("slug value:", slug)
+#     clicked_post = next(post for post in all_posts if post['slug']==slug)
+#     return render(request, "blog/post-detail.html", {
+#         "clicked_post": clicked_post
+#     } )
+
 def post_detail(request, slug):
     print ("slug value:", slug)
-    clicked_post = next(post for post in all_posts if post['slug']==slug)
+    # V02.1 clicked_post = Post.objects.get(slug=slug) # need to add Try: and 404
+    clicked_post = get_object_or_404(Post, slug=slug)
     return render(request, "blog/post-detail.html", {
-        "clicked_post": clicked_post
+        "clicked_post": clicked_post,
+        "post_tags": clicked_post.tags.all()
     } )
