@@ -6,10 +6,14 @@
   <title>Your Review</title>
 </head>
 <body>
-  <form method="POST" action="">
+  {% comment %} # ation allows to change the request URL for the submit {% endcomment %}
+  <form method="POST" action="/reviews/"> 
     {% csrf_token %}
+    {% if has_error %}
+      <p>Invalid form - Enter a valid username!</p>
+    {% endif %}
     <label for="username">Your name</label>
-    <input id="username" name="formname" type="text">
+    <input id="username" name="form_item_name" type="text">
     <button type="submit">Send</button>
   </form>
 </body>
