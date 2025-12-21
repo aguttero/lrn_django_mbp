@@ -1,9 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Your Review</title>
+  <link rel="stylesheet" href="{% static "reviews/styles.css" %}">
 </head>
 <body>
   {% comment %} # ation allows to change the request URL for the submit {% endcomment %}
@@ -17,7 +20,14 @@
     {% comment %} <label for="username">Your name</label>
     <input id="username" name="form_item_name" type="text"> {% endcomment %}
     {% comment %} V02 with django form class {% endcomment %}
-    {{ form }}
+    
+    {% for field in form  %}
+      <div class="form-control {% if field.errors %} errors {% endif %}">
+      {{ field.label_tag }}
+      {{ field }}
+      {{ field.errors }}
+      </div>
+    {% endfor %}
     <button type="submit">Send</button>
   </form>
 </body>

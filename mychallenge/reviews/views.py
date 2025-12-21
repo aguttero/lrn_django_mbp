@@ -37,7 +37,8 @@ def review(request):
             print("django form data:", form_01.cleaned_data)
             return HttpResponseRedirect ("thank-you")
 
-    form_01 = ReviewForm()
+    else: 
+        form_01 = ReviewForm()
 
     return render(request, "reviews/review.html", {
         "form": form_01
